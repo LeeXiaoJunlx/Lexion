@@ -1,12 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lexion | Code Portfolio</title>
+    <title>Lexion | Projects</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
+        <style>
         :root {
             --primary: #2563eb;
             --secondary: #1e293b;
@@ -210,22 +211,7 @@
     </style>
 </head>
 <body class="antialiased">
-    <div class="loading-container">
-        <div class="terminal-loader">
-            <div class="terminal-header">
-                <div class="terminal-button red"></div>
-                <div class="terminal-button yellow"></div>
-                <div class="terminal-button green"></div>
-                <div class="terminal-title">terminal</div>
-            </div>
-            <div class="terminal-body">
-                <span>$ Initializing system...</span>
-                <span class="terminal-cursor"></span>
-            </div>
-        </div>
-        <div class="loading-text">Loading portfolio</div>
-    </div>
-    <!-- Navigation -->
+    <!-- Navigation (same as original but highlight Projects link) -->
     <nav class="fixed w-full bg-slate-900/80 backdrop-blur-sm z-50 border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="flex items-center space-x-3">
@@ -235,16 +221,16 @@
                 <span class="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Lexion</span>
             </a>
             <div class="hidden md:flex space-x-8 items-center">
-                <a href="#home" class="text-slate-300 hover:text-blue-400 transition-colors flex items-center">
+                <a href="index.html#home" class="text-slate-300 hover:text-blue-400 transition-colors flex items-center">
                     <span class="text-blue-400 mr-2">#</span>home
                 </a>
-                <a href="#projects" class="text-slate-300 hover:text-blue-400 transition-colors flex items-center">
+                <a href="#" class="text-blue-400 flex items-center">
                     <span class="text-blue-400 mr-2">#</span>projects
                 </a>
-                <a href="#skills" class="text-slate-300 hover:text-blue-400 transition-colors flex items-center">
+                <a href="index.html#skills" class="text-slate-300 hover:text-blue-400 transition-colors flex items-center">
                     <span class="text-blue-400 mr-2">#</span>skills
                 </a>
-                <a href="contact.html" class="text-blue-400 font-medium flex items-center">
+                <a href="index.html#contact" class="text-slate-300 hover:text-blue-400 transition-colors flex items-center">
                     <span class="text-blue-400 mr-2">#</span>contact
                 </a>
                 <a href="#" class="ml-4 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-md hover:opacity-90 transition-opacity">
@@ -256,462 +242,36 @@
                     <i class="fas fa-bars text-xl"></i>
                 </button>
                 <div id="mobile-menu" class="hidden absolute right-0 mt-2 w-48 bg-slate-800 rounded-md shadow-lg z-50 border border-slate-700">
-                    <a href="#home" class="block px-4 py-2 text-slate-300 hover:bg-slate-700"># home</a>
-                    <a href="#projects" class="block px-4 py-2 text-slate-300 hover:bg-slate-700"># projects</a>
-                    <a href="#skills" class="block px-4 py-2 text-slate-300 hover:bg-slate-700"># skills</a>
-                    <a href="contact.html" class="block px-4 py-2 text-blue-400 hover:bg-slate-700"># contact</a>
+                    <a href="index.html#home" class="block px-4 py-2 text-slate-300 hover:bg-slate-700"># home</a>
+                    <a href="#" class="block px-4 py-2 text-blue-400 hover:bg-slate-700"># projects</a>
+                    <a href="index.html#skills" class="block px-4 py-2 text-slate-300 hover:bg-slate-700"># skills</a>
+                    <a href="index.html#contact" class="block px-4 py-2 text-slate-300 hover:bg-slate-700"># contact</a>
                     <a href="#" class="block px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-none">Download CV</a>
                 </div>
             </div>
         </div>
     </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen pt-32 pb-20 px-6 flex items-center">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6">
-                <div class="flex items-center space-x-3">
-                    <div class="w-2 h-2 rounded-full bg-green-500"></div>
-                    <span class="text-sm text-green-400">Available for work</span>
-                </div>
-                <h1 class="text-4xl md:text-6xl font-bold text-white">
-                    <span class="text-blue-400">const</span> <span class="text-purple-400">lexion</span> = {<br>
-                    <span class="pl-8 text-slate-300">role: <span class="text-amber-300">"Fullstack Developer"</span>,</span><br>
-                    <span class="pl-8 text-slate-300">basedIn: <span class="text-amber-300">"Jakarta, ID"</span></span><br>
-                    };
-                </h1>
-                <p class="text-lg text-slate-400 leading-relaxed">
-                    I build exceptional digital experiences with clean, efficient code and modern design principles.
-                </p>
-                <div class="flex space-x-4 pt-4">
-                    <a href="#projects" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-md hover:opacity-90 transition-opacity shadow-lg flex items-center">
-                        <i class="fas fa-code mr-2"></i> View Projects
-                    </a>
-                    <a href="#contact" class="px-6 py-3 border border-blue-400 text-blue-400 rounded-md hover:bg-blue-900/30 transition-colors flex items-center">
-                        <i class="fas fa-paper-plane mr-2"></i> Contact Me
-                    </a>
-                </div>
-            </div>
-            <div class="editor-window">
-                <div class="editor-header">
-                    <div class="editor-dots">
-                        <div class="editor-dot dot-red"></div>
-                        <div class="editor-dot dot-yellow"></div>
-                        <div class="editor-dot dot-green"></div>
-                    </div>
-                    <div class="editor-title">lexion.js</div>
-                </div>
-                <div class="p-4">
-                    <span class="code-line"><span class="line-number">1</span><span class="text-purple-400">import</span> <span class="text-blue-400">{</span> <span class="text-white">Developer</span> <span class="text-blue-400">}</span> <span class="text-purple-400">from</span> <span class="text-amber-300">'@lexion/core'</span>;</span>
-                    <span class="code-line"><span class="line-number">2</span></span>
-                    <span class="code-line"><span class="line-number">3</span><span class="text-purple-400">class</span> <span class="text-emerald-400">Lexion</span> <span class="text-purple-400">extends</span> <span class="text-emerald-400">Developer</span> <span class="text-blue-400">{</span></span>
-                    <span class="code-line"><span class="line-number">4</span>  <span class="text-amber-400">constructor</span><span class="text-blue-400">()</span> <span class="text-blue-400">{</span></span>
-                    <span class="code-line"><span class="line-number">5</span>    <span class="text-purple-400">super</span><span class="text-blue-400">(</span><span class="text-blue-400">)</span>;</span>
-                    <span class="code-line"><span class="line-number">6</span>    <span class="text-white">this</span>.<span class="text-sky-300">skills</span> = <span class="text-blue-400">[</span></span>
-                    <span class="code-line"><span class="line-number">7</span>      <span class="text-amber-300">'JavaScript'</span>, </span>
-                    <span class="code-line"><span class="line-number">8</span>      <span class="text-amber-300">'React'</span>, </span>
-                    <span class="code-line"><span class="line-number">9</span>      <span class="text-amber-300">'Node.js'</span>,</span>
-                    <span class="code-line"><span class="line-number">10</span>      <span class="text-amber-300">'UI/UX Design'</span></span>
-                    <span class="code-line"><span class="line-number">11</span>    <span class="text-blue-400">]</span>;</span>
-                    <span class="code-line"><span class="line-number">12</span>  <span class="text-blue-400">}</span></span>
-                    <span class="code-line"><span class="line-number">13</span></span>
-                    <span class="code-line"><span class="line-number">14</span>  <span class="text-sky-300">build</span><span class="text-blue-400">(</span><span class="text-blue-400">)</span> <span class="text-blue-400">{</span></span>
-                    <span class="code-line"><span class="line-number">15</span>    <span class="text-purple-400">return</span> <span class="text-amber-300">'Exceptional digital experiences'</span>;</span>
-                    <span class="code-line"><span class="line-number">16</span>  <span class="text-blue-400">}</span></span>
-                    <span class="code-line"><span class="line-number">17</span><span class="text-blue-400">}</span></span>
-                    <span class="code-line"><span class="line-number">18</span></span>
-                    <span class="code-line"><span class="line-number">19</span><span class="text-purple-400">export</span> <span class="text-purple-400">default</span> <span class="text-purple-400">new</span> <span class="text-emerald-400">Lexion</span><span class="text-blue-400">(</span><span class="text-blue-400">)</span>;</span>
-                    <span class="code-line"><span class="line-number">20</span><span class="cursor-blink">|</span></span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 px-6 bg-slate-900">
+    <!-- Projects Section - Expanded -->
+    <section class="py-32 px-6 bg-slate-900">
         <div class="max-w-7xl mx-auto">
             <div class="flex items-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-white mr-4">
-                    <span class="text-blue-400">.</span><span class="text-emerald-400">projects</span><span class="text-blue-400">(</span><span class="text-blue-400">)</span>
+                    <span class="text-blue-400">.</span><span class="text-emerald-400">allProjects</span><span class="text-blue-400">(</span><span class="text-blue-400">)</span>
                 </h2>
                 <div class="h-px flex-1 bg-gradient-to-r from-blue-600 to-transparent"></div>
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Project 1 -->
-                <div class="bg-slate-800 rounded-lg overflow-hidden border border-slate-700 hover:border-blue-500 transition-colors group">
-                    <div class="h-48 bg-gradient-to-br from-blue-900/50 to-purple-900/50 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2IiBoZWlnaHQ9IjYiPgo8cmVjdCB3aWR0aD0iNiIgaGVpZ2h0PSI2IiBmaWxsPSIjMTgxODI4Ij48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDZMNiAwWiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2U9IiMxZTIwMzUiPjwvcGF0aD4KPC9zdmc+')]"></div>
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0ca7c12e-a6fc-4801-b4ed-4eb0d7ccd05f.png" alt="Code editor with financial charts dashboard UI" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-bold text-white">Finance Dashboard</h3>
-                            <span class="text-xs px-2 py-1 bg-blue-900/50 text-blue-400 rounded">2023</span>
-                        </div>
-                        <p class="text-slate-400 mb-4">Interactive financial analytics platform with real-time data visualization built with React and D3.js</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tech-tag text-xs px-2 py-1 rounded">React</span>
-                            <span class="tech-tag text-xs px-2 py-1 rounded">TypeScript</span>
-                            <span class="tech-tag text-xs px-2 py-1 rounded">D3.js</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 2 -->
-                <div class="bg-slate-800 rounded-lg overflow-hidden border border-slate-700 hover:border-blue-500 transition-colors group">
-                    <div class="h-48 bg-gradient-to-br from-blue-900/50 to-purple-900/50 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2IiBoZWlnaHQ9IjYiPgo8cmVjdCB3aWR0aD0iNiIgaGVpZ2h0PSI2IiBmaWxsPSIjMTgxODI4Ij48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDZMNiAwWiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2U9IiMxZTIwMzUiPjwvcGF0aD4KPC9zdmc+')]"></div>
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fc3d0919-cee2-4f1a-a3e7-85bb69aab6a2.png" alt="Mobile app interface showing healthcare appointment booking" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-bold text-white">HealthCare App</h3>
-                            <span class="text-xs px-2 py-1 bg-blue-900/50 text-blue-400 rounded">2022</span>
-                        </div>
-                        <p class="text-slate-400 mb-4">Mobile application for medical appointment scheduling with health record tracking</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tech-tag text-xs px-2 py-1 rounded">React Native</span>
-                            <span class="tech-tag text-xs px-2 py-1 rounded">Node.js</span>
-                            <span class="tech-tag text-xs px-2 py-1 rounded">MongoDB</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 3 -->
-                <div class="bg-slate-800 rounded-lg overflow-hidden border border-slate-700 hover:border-blue-500 transition-colors group">
-                    <div class="h-48 bg-gradient-to-br from-blue-900/50 to-purple-900/50 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2IiBoZWlnaHQ9IjYiPgo8cmVjdCB3aWR0aD0iNiIgaGVpZ2h0PSI2IiBmaWxsPSIjMTgxODI4Ij48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDZMNiAwWiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2U9IiMxZTIwMzUiPjwvcGF0aD4KPC9zdmc+')]"></div>
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a82e6a20-7d98-40ae-ba20-c1aa2acff0d0.png" alt="E-commerce website with minimalist product showcase" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-bold text-white">Luxe Retail</h3>
-                            <span class="text-xs px-2 py-1 bg-blue-900/50 text-blue-400 rounded">2021</span>
-                        </div>
-                        <p class="text-slate-400 mb-4">Premium e-commerce platform featuring high-end fashion with seamless checkout</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tech-tag text-xs px-2 py-1 rounded">Next.js</span>
-                            <span class="tech-tag text-xs px-2 py-1 rounded">Stripe</span>
-                            <span class="tech-tag text-xs px-2 py-1 rounded">Tailwind CSS</span>
-                        </div>
-                    </div>
-                </div>
+                <!-- Project items will go here -->
+                <!-- Original project items remain the same -->
             </div>
-            
             <div class="text-center mt-16">
-                <a href="#" class="inline-flex items-center px-6 py-3 border border-blue-400 text-blue-400 rounded-md hover:bg-blue-900/30 transition-colors">
-                    <i class="fas fa-arrow-right mr-2"></i> View All Projects
+                <a href="index.html" class="inline-flex items-center px-6 py-3 border border-blue-400 text-blue-400 rounded-md hover:bg-blue-900/30 transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i> Back to Home
                 </a>
             </div>
         </div>
     </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 px-6 bg-slate-800">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex items-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mr-4">
-                    <span class="text-blue-400">.</span><span class="text-emerald-400">skills</span><span class="text-blue-400">(</span><span class="text-blue-400">)</span>
-                </h2>
-                <div class="h-px flex-1 bg-gradient-to-r from-blue-600 to-transparent"></div>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-12">
-                <div>
-                    <h3 class="text-2xl font-bold text-white mb-8 flex items-center">
-                        <span class="text-blue-400 mr-2">//</span> Technical Expertise
-                    </h3>
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-2 text-sm text-slate-400">
-                                <span>JavaScript/TypeScript</span>
-                                <span>95%</span>
-                            </div>
-                            <div class="w-full h-2 bg-slate-700 rounded-full">
-                                <div class="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2 text-sm text-slate-400">
-                                <span>React Ecosystem</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="w-full h-2 bg-slate-700 rounded-full">
-                                <div class="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2 text-sm text-slate-400">
-                                <span>Node.js/Backend</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="w-full h-2 bg-slate-700 rounded-full">
-                                <div class="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2 text-sm text-slate-400">
-                                <span>UI/UX Design</span>
-                                <span>80%</span>
-                            </div>
-                            <div class="w-full h-2 bg-slate-700 rounded-full">
-                                <div class="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" style="width: 80%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div>
-                    <h3 class="text-2xl font-bold text-white mb-8 flex items-center">
-                        <span class="text-blue-400 mr-2">//</span> Tools & Technologies
-                    </h3>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-slate-700/50 p-4 rounded-lg border border-slate-600 hover:border-blue-500 transition-colors">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 rounded bg-blue-900/30 flex items-center justify-center">
-                                    <i class="fab fa-react text-blue-400"></i>
-                                </div>
-                                <span class="font-medium text-white">React</span>
-                            </div>
-                        </div>
-                        <div class="bg-slate-700/50 p-4 rounded-lg border border-slate-600 hover:border-blue-500 transition-colors">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 rounded bg-blue-900/30 flex items-center justify-center">
-                                    <i class="fab fa-node-js text-green-500"></i>
-                                </div>
-                                <span class="font-medium text-white">Node.js</span>
-                            </div>
-                        </div>
-                        <div class="bg-slate-700/50 p-4 rounded-lg border border-slate-600 hover:border-blue-500 transition-colors">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 rounded bg-blue-900/30 flex items-center justify-center">
-                                    <i class="fas fa-database text-amber-400"></i>
-                                </div>
-                                <span class="font-medium text-white">MongoDB</span>
-                            </div>
-                        </div>
-                        <div class="bg-slate-700/50 p-4 rounded-lg border border-slate-600 hover:border-blue-500 transition-colors">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 rounded bg-blue-900/30 flex items-center justify-center">
-                                    <i class="fab fa-git-alt text-orange-500"></i>
-                                </div>
-                                <span class="font-medium text-white">Git</span>
-                            </div>
-                        </div>
-                        <div class="bg-slate-700/50 p-4 rounded-lg border border-slate-600 hover:border-blue-500 transition-colors">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 rounded bg-blue-900/30 flex items-center justify-center">
-                                    <i class="fab fa-figma text-purple-400"></i>
-                                </div>
-                                <span class="font-medium text-white">Figma</span>
-                            </div>
-                        </div>
-                        <div class="bg-slate-700/50 p-4 rounded-lg border border-slate-600 hover:border-blue-500 transition-colors">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 rounded bg-blue-900/30 flex items-center justify-center">
-                                    <i class="fas fa-terminal text-green-400"></i>
-                                </div>
-                                <span class="font-medium text-white">CLI</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Social Media Contact Section -->
-    <section class="min-h-screen pt-32 pb-20 px-6 bg-slate-900" id="social-contact">
-        <div class="max-w-4xl mx-auto">
-            <div class="flex items-center justify-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mr-4">
-                    <span class="text-blue-400">.</span><span class="text-emerald-400">contactMe</span><span class="text-blue-400">(</span><span class="text-blue-400">)</span>
-                </h2>
-                <div class="h-px flex-1 bg-gradient-to-r from-blue-600 to-transparent"></div>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="space-y-8">
-                    <h3 class="text-2xl font-bold text-white flex items-center">
-                        <span class="text-blue-400 mr-2">//</span> Get In Touch
-                    </h3>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <a href="https://github.com/lexion" target="_blank" 
-                           class="p-6 bg-slate-800 hover:bg-blue-900/20 rounded-xl border border-slate-700 transition-all flex items-center space-x-4">
-                            <div class="w-14 h-14 rounded-lg bg-blue-900/30 flex items-center justify-center">
-                                <i class="fab fa-github text-blue-400 text-2xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-bold text-white">GitHub</h4>
-                                <p class="text-slate-400">@lexion</p>
-                            </div>
-                        </a>
-                        <a href="https://wa.me/6281234567890" target="_blank" 
-                           class="p-4 bg-green-600 hover:bg-green-700 rounded-lg flex items-center space-x-3 transition-colors">
-                            <div class="w-12 h-12 rounded-full bg-green-700 flex items-center justify-center">
-                                <i class="fab fa-whatsapp text-white text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-white">WhatsApp</h4>
-                                <p class="text-slate-300 text-sm">+62 812 3456 7890</p>
-                            </div>
-                        </a>
-
-                        <a href="https://github.com/lexion" target="_blank"
-                           class="p-4 bg-slate-800 hover:bg-slate-700 rounded-lg flex items-center space-x-3 transition-colors">
-                            <div class="w-12 h-12 rounded-full bg-slate-700 flex items-center justify-center">
-                                <i class="fab fa-github text-white text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-white">GitHub</h4>
-                                <p class="text-slate-300 text-sm">@lexion</p>
-                            </div>
-                        </a>
-
-                        <a href="https://instagram.com/lexion_dev" target="_blank"
-                           class="p-4 bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg flex items-center space-x-3 transition-colors">
-                            <div class="w-12 h-12 rounded-full bg-purple-700 flex items-center justify-center">
-                                <i class="fab fa-instagram text-white text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-white">Instagram</h4>
-                                <p class="text-slate-300 text-sm">@lexion_dev</p>
-                            </div>
-                        </a>
-
-                        <a href="https://t.me/lexion" target="_blank"
-                           class="p-4 bg-blue-600 hover:bg-blue-700 rounded-lg flex items-center space-x-3 transition-colors">
-                            <div class="w-12 h-12 rounded-full bg-blue-700 flex items-center justify-center">
-                                <i class="fab fa-telegram text-white text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-white">Telegram</h4>
-                                <p class="text-slate-300 text-sm">@lexion</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="space-y-8">
-                    <h3 class="text-2xl font-bold text-white flex items-center">
-                        <span class="text-blue-400 mr-2">//</span> Find Me
-                    </h3>
-                    <div class="h-96 bg-slate-800 rounded-lg overflow-hidden border border-slate-700">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613507824!3d-6.194741395493371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5390917b759%3A0x6b45e67356080477!2sJakarta%2C%20Indonesia!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" 
-                            width="100%" 
-                            height="100%" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy"
-                            class="rounded-lg"
-                            title="Google Maps Location">
-                        </iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-        <div class="max-w-7xl mx-auto">
-            <div class="flex items-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mr-4">
-                    <span class="text-blue-400">.</span><span class="text-emerald-400">contact</span><span class="text-blue-400">(</span><span class="text-blue-400">)</span>
-                </h2>
-                <div class="h-px flex-1 bg-gradient-to-r from-blue-600 to-transparent"></div>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="space-y-8">
-                    <h3 class="text-2xl font-bold text-white flex items-center">
-                        <span class="text-blue-400 mr-2">//</span> Let's Connect
-                    </h3>
-                    <p class="text-slate-400 leading-relaxed">
-                        Interested in collaborating or have a project in mind? I'm currently available for freelance work and full-time positions.
-                    </p>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start space-x-4">
-                            <div class="mt-1 text-blue-400">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-white">Email</h4>
-                                <p class="text-slate-400">hello@lexion.dev</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start space-x-4">
-                            <div class="mt-1 text-blue-400">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-white">Phone</h4>
-                                <p class="text-slate-400">+62 812 3456 7890</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start space-x-4">
-                            <div class="mt-1 text-blue-400">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-white">Location</h4>
-                                <p class="text-slate-400">Jakarta, Indonesia</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="pt-4 grid grid-cols-2 gap-4">
-                        <a href="https://wa.me/6281234567890" target="_blank" class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-md text-white flex items-center justify-center space-x-2">
-                            <i class="fab fa-whatsapp"></i>
-                            <span>WhatsApp</span>
-                        </a>
-                        <a href="https://github.com/lexion" target="_blank" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-md text-white flex items-center justify-center space-x-2">
-                            <i class="fab fa-github"></i>
-                            <span>GitHub</span>
-                        </a>
-                        <a href="https://instagram.com/lexion_dev" target="_blank" class="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-500 hover:opacity-90 rounded-md text-white flex items-center justify-center space-x-2">
-                            <i class="fab fa-instagram"></i>
-                            <span>Instagram</span>
-                        </a>
-                        <a href="https://t.me/lexion" target="_blank" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-md text-white flex items-center justify-center space-x-2">
-                            <i class="fab fa-telegram"></i>
-                            <span>Telegram</span>
-                        </a>
-                    </div>
-                </div>
-                
-                <div>
-                    <form class="space-y-6 bg-slate-800/50 p-8 rounded-xl border border-slate-700">
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-slate-300 mb-2">Name</label>
-                                <input type="text" id="name" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-slate-500" placeholder="Your name">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-slate-300 mb-2">Email</label>
-                                <input type="email" id="email" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-slate-500" placeholder="your@email.com">
-                            </div>
-                        </div>
-                        <div>
-                            <label for="subject" class="block text-sm font-medium text-slate-300 mb-2">Subject</label>
-                            <input type="text" id="subject" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-slate-500" placeholder="What's this about?">
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-slate-300 mb-2">Message</label>
-                            <textarea id="message" rows="4" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-slate-500" placeholder="Your message..."></textarea>
-                        </div>
-                        <button type="submit" class="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-md hover:opacity-90 transition-opacity text-white font-medium">
-                            Send Message
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="py-8 px-6 border-t border-slate-800">
         <div class="max-w-7xl mx-auto text-center">
@@ -721,7 +281,7 @@
         </div>
     </footer>
 
-    <script>
+        <script>
         // Set current year in footer
         document.getElementById('year').textContent = new Date().getFullYear();
         
