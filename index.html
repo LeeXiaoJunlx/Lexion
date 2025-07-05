@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lexion | Code Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e293b;
+            --accent: #7c3aed;
+        }
+        
+        body {
+            font-family: 'Fira Code', monospace, sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        
+        .code-bg {
+            background-color: #1e293b;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .tag {
+            color: #7dd3fc;
+        }
+        
+        .tech-tag {
+            background-color: #334155;
+            color: #38bdf8;
+        }
+        
+        .editor-window {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .editor-header {
+            background: #1e293b;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #334155;
+        }
+        
+        .editor-dots {
+            display: flex;
+            gap: 6px;
+        }
+        
+        .editor-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #f59e0b; }
+        .dot-green { background: #10b981; }
+        
+        .editor-title {
+            margin-left: 12px;
+            font-size: 14px;
+            color: #94a3b8;
+        }
+        
+        .code-line {
+            font-family: 'Fira Code', monospace;
+            padding: 2px 16px;
+            display: block;
+        }
+        
+        .line-number {
+            color: #64748b;
+            display: inline-block;
+            width: 24px;
+            text-align: right;
+            margin-right: 16px;
+            user-select: none;
+        }
+        
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .glitch {
+            position: relative;
+            font-weight: bold;
+            color: #fff;
+        }
+        
+        .glitch::before, .glitch::after {
+            content: "Lexion";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00c1;
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+        
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+            clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim 3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(31px, 9999px, 94px, 0); }
+            10% { clip: rect(112px, 9999px, 76px, 0); }
+            20% { clip: rect(85px, 9999px, 77px, 0); }
+            30% { clip: rect(27px, 9999px, 97px, 0); }
+            40% { clip: rect(64px, 9999px, 98px, 0); }
+            50% { clip: rect(61px, 9999px, 85px, 0); }
+            60% { clip: rect(99px, 9999px, 114px, 0); }
+            70% { clip: rect(34px, 9999px, 115px, 0); }
+            80% { clip: rect(98px, 9999px, 129px, 0); }
+            90% { clip: rect(43px, 9999px, 96px, 0); }
+            100% { clip: rect(82px, 9999px, 64px, 0); }
+        }
+
+        .loading-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0f172a;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .floating-code {
+            position: absolute;
+            color: rgba(125, 211, 252, 0.1);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            pointer-events: none;
+            animation: float 15s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.2;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .loading-text {
+            font-family: 'Fira Code', monospace;
+            color: #7dd3fc;
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+
+        .terminal-loader {
+            width: 240px;
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            border: 1px solid #334155;
+        }
+
+        .terminal-header {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-button.red { background: #ef4444; }
+        .terminal-button.yellow { background: #f59e0b; }
+        .terminal-button.green { background: #10b981; }
+
+        .terminal-title {
+            margin-left: 12px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .terminal-body {
+            font-family: 'Fira Code', monospace;
+            color: #e2e8f0;
+        }
+
+        @keyframes cursor-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #7dd3fc }
+        }
+
+        .typing-line {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #7dd3fc;
+            animation: 
+                typing 1.5s steps(30, end) forwards,
+                blink-caret .75s step-end infinite;
+        }
+
+        .terminal-cursor {
+            display: inline-block;
+            width: 6px;
+            height: 15px;
+            background: #7dd3fc;
+            margin-left: 2px;
+            animation: cursor-blink 1s infinite;
+        }
+
+        .terminal-line {
+            margin-bottom: 15px;
+        }
+
+        .terminal-progress {
+            height: 4px;
+            background: #334155;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, #3b82f6, #7c3aed);
+            transition: width 0.3s ease;
+        }
+
+        .music-player {
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .music-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            margin-right: 16px;
+        }
+
+        .music-info {
+            flex-grow: 1;
+        }
+
+        .music-title {
+            font-size: 1rem;
+            color: #e2e8f0;
+        }
+
+        .music-duration {
+            font-size: 0.875rem;
+            color: #94a3b8;
+        }
+
+        .play-button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .play-button:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="loading-container">
+        <div class="terminal-loader">
+            <div class="terminal-header">
+                <div class="terminal-button red"></div>
+                <div class="terminal-button yellow"></div>
+                <div class="terminal-button green"></div>
+                <div class="terminal-title">lexion@portfolio:~</div>
+            </div>
+            <div class="terminal-body">
+                <div class="terminal-line">
+                    <span class="text-emerald-400">lexion@portfolio</span>:<span class="text-blue-400">~$</span> 
+                    <span class="typing-text"></span>
+                    <span class="terminal-cursor"></span>
+                </div>
+                <div class="terminal-progress">
+                    <div class="progress-bar"></div>
+                </div>
+            </div>
+        </div>
+        <div class="loading-text">Booting Systems</div>
+    </div>
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-slate-900/80 backdrop-blur-sm z-50 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-md bg-indigo-600 flex items-center justify-center">
+                    <span class="text-white font-bold">{"</>"}</span>
+                </div>
+                <span class="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Lexion</span>
+            </a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#home" class="text-slate-300 hover:text-blue-400 transition-colors flex items-center">
+                    <span class="text-blue-400 mr-2">#</span>home
+                </a>
+                <a href="#projects" class="text-slate-300 hover:text-blue-400 transition-colors flex items-center">
+                    <span class="text-blue-400 mr-2">#</span>projects
+                </a>
+                <a href="#skills" class="text-slate-300 hover:text-blue-400 transition-colors flex items-center">
+                    <span class="text-blue-400 mr-2">#</span>skills
+                </a>
+                <a href="contact.html" class="text-blue-400 font-medium flex items-center">
+                    <span class="text-blue-400 mr-2">#</span>contact
+                </a>
+                <a href="#" class="ml-4 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-md hover:opacity-90 transition-opacity">
+                    Download CV
+                </a>
+            </div>
+            <div class="md:hidden relative">
+                <button id="mobile-menu-button" class="text-slate-300">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <div id="mobile-menu" class="hidden absolute right-0 mt-2 w-48 bg-slate-800 rounded-md shadow-lg z-50 border border-slate-700">
+                    <a href="#home" class="block px-4 py-2 text-slate-300 hover:bg-slate-700"># home</a>
+                    <a href="#projects" class="block px-4 py-2 text-slate-300 hover:bg-slate-700"># projects</a>
+                    <a href="#skills" class="block px-4 py-2 text-slate-300 hover:bg-slate-700"># skills</a>
+                    <a href="contact.html" class="block px-4 py-2 text-blue-400 hover:bg-slate-700"># contact</a>
+                    <a href="#" class="block px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-none">Download CV</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen pt-32 pb-20 px-6 flex items-center">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <div class="flex items-center space-x-3">
+                    <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                    <span class="text-sm text-green-400">Available for work</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold text-white">
+                    <span class="typing-container">
+                        <span class="text-blue-400">const</span> <span class="text-purple-400">lexion</span> = {<br>
+                        <span class="pl-8 text-slate-300">role: <span class="text-amber-300 typing-line" data-text='"Fullstack Developer"'></span>,</span><br>
+                        <span class="pl-8 text-slate-300">basedIn: <span class="text-amber-300 typing-line" data-text='"Jakarta, ID"'></span></span><br>
+                        };
+                    </span>
+                </h1>
+                <p class="text-lg text-slate-400 leading-relaxed">
+                    I build exceptional digital experiences with clean, efficient code and modern design principles.
+                </p>
+                <div class="flex space-x-4 pt-4">
+                    <a href="#projects" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-md hover:opacity-90 transition-opacity shadow-lg flex items-center">
+                        <i class="fas fa-code mr-2"></i> View Projects
+                    </a>
+                    <a href="#contact" class="px-6 py-3 border border-blue-400 text-blue-400 rounded-md hover:bg-blue-900/30 transition-colors flex items-center">
+                        <i class="fas fa-paper-plane mr-2"></i> Contact Me
+                    </a>
+                </div>
+            </div>
+            <div class="editor-window">
+                <div class="editor-header">
+                    <div class="editor-dots">
+                        <div class="editor-dot dot-red"></div>
+                        <div class="editor-dot dot-yellow"></div>
+                        <div class="editor-dot dot-green"></div>
+                    </div>
+                    <div class="editor-title">lexion.js</div>
+                </div>
+                <div class="p-4">
+                    <span class="code-line"><span class="line-number">1</span><span class="text-purple-400">const</span> <span class="text-white">lexion</span> <span class="text-blue-400">=</span> <span class="text-blue-400">{</span></span>
+                    <span class="code-line"><span class="line-number">2</span>  <span class="text-emerald-400">name</span>: <span class="text-amber-300">'Lexion'</span>,</span>
+                    <span class="code-line"><span class="line-number">3</span>  <span class="text-emerald-400">skills</span>: <span class="text-blue-400">[</span><span class="text-amber-300">'HTML'</span>, <span class="text-amber-300">'CSS'</span>, <span class="text-amber-300">'JS'</span>, <span class="text-amber-300">'JSON'</span><span class="text-blue-400">]</span></span>
+                    <span class="code-line"><span class="line-number">4</span> <span class="text-blue-400">}</span>;</span>
+                    <span class="code-line"><span class="line-number">5</span><span class="cursor-blink">|</span></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-6 bg-slate-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mr-4">
+                    <span class="text-blue-400">.</span>
+                                        <span class="text-blue-400">.</span><span class="text-emerald-400">projects</span><span class="text-blue-400">(</span><span class="text-blue-400">)</span>
+                </h2>
+                <div class="h-px flex-1 bg-gradient-to-r from-blue-6
+00 to-transparent"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project 1 -->
+                <div class="bg-slate-800 rounded-lg overflow-hidden border border-slate-700 hover:border-blue-500 transition-all duration-300 group hover:-translate-y-1 hover:shadow-xl">
+                    <div class="h-48 bg-gradient-to-br from-blue-900/50 to-purple-9
+00/50 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2IiBoZWlnaHQ9IjYiPgo8cmVjdCB3aWR0aD0iNiIgaGVpZ2h0PSI2IiBmaWxsPSIjMTgxODI4Ij48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDZMNiAwWiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2U9IiMxZTIwMzUiPjwvc
+GF0aD4KPC9zdmc+')]"></div>
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0ca7c12e-a6fc-4801-b4ed-4eb0d7ccd05f.png" alt="Code editor with financial charts dashboard UI" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-white">Finance Dashboard</h3>
+                            <span class="text-xs px-2 py-1 bg-blue-900/50 text-blue-400 rounded">2023</span>
+                        </div>
+                        <p class="text-slate-400 mb-4">Interactive financial analytics platform with real-time data visualization built with HTML, CSS and JavaScript</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-tag text-xs px-2 py-1 rounded">HTML</span>
+                            <span class="tech-tag text-xs px-2 py-1 rounded">CSS</span>
+                            <span class="tech-tag text-xs px-2 py-1 rounded">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="bg-slate-800 rounded-lg overflow-hidden border border-slate-700 hover:border-blue-500 transition-colors group">
+                    <div class="h-48 bg-gradient-to-br from-blue-900/50 to-purple-900/50 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2IiBoZWlnaHQ9IjYiPgo8cmVjdCB3aWR0aD0iNiI gaGVpZ2h0PSI2IiBmaWxsPSIjMTgxODI4Ij48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDZMNiAwWiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2U9IiMxZTIwMzUiPjwvcGF0aD4KPC9zdmc+')]"></div>
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fc3d0919-cee2-4f1a-a3e7-85bb69aab6a2.png" alt="Mobile app interface showing healthcare appointment booking" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-white">HealthCare App</h3>
+                            <span class="text-xs px-2 py-1 bg-blue-900/50 text-blue-400 rounded">2022</span>
+                        </div>
+                        <p class="text-slate-4
+00 mb-4">Mobile application for medical appointment scheduling with health record tracking</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-tag text-xs px-2 py-1 rounded">HTML</span>
+                            <span class="tech-tag text-xs px-2 py-1 rounded">CSS</span>
+                            <span class="tech-tag text-xs px-2 py-1 rounded">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="bg-slate-800 rounded-lg overflow-hidden border border-slate-700 hover:border-blue-500 transition-colors group">
+                    <div class="h-48 bg-gradient-to-br from-blue-900/50 to-purple-900/50 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2IiBoZWlnaHQ9IjYiPgo8cmVjdCB3aWR0aD0iNiIgaGVpZ2h0PSI2IiBmaWxsPSIjMTgxODI4Ij48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDZMNiAwWiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2U9IiMxZTIwMzUiPjwvcGF0aD4KPC9zdmc+')]"></div>
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a82e6a20-7d98-40ae-ba20-c1aa2acff0d0.png" alt="E-commerce website with minimalist product showcase" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-white">Luxe Retail</h3>
+                            <span class="text-xs px-2 py-1 bg-blue-900/50 text-blue-400 rounded">2021</span>
+                        </div>
+                        <p class="text-slate-400 mb-4">Premium e-commerce platform featuring high-end fashion with seamless checkout</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-tag text-xs px-2 py-1 rounded">HTML</span>
+                            <span class="tech-tag text-xs px-2 py-1 rounded">CSS</span>
+                            <span class="tech-tag text-xs px-2 py-1 rounded">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-16">
+                <a href="#" class="inline-flex items-center px-6 py-3 border border-blue-400 text-blue-400 rounded-md hover:bg-blue-900/30 transition-colors">
+                    <i class="fas fa-arrow-right mr-2"></i> View All Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-6 bg-slate-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mr-4">
+                    <span class="text-blue-400">.</span><span class="text-emerald-400">skills</span><span class="text-blue-400">(</span><span class="text-blue-400">)</span>
+                </h2>
+                <div class="h-px flex-1 bg-gradient-to-r from-blue-600 to-transparent"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-8 flex items-center">
+                        <span class="text-blue-400 mr-2">//</span> Technical Expertise
+                    </h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2 text-sm text-slate-400">
+                                <span>HTML</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-700 rounded-full">
+                                <div class="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2 text-sm text-slate-400">
+                                <span>CSS</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-700 rounded-full">
+                                <div class="h-full bg-gradient-to-r from-blue-500 to-purple-5
+00 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2 text-sm text-slate-400">
+                                <span>JavaScript</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-700 rounded-full">
+                                <div class="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2 text-sm text-slate-400">
+                                <span>JSON</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-700 rounded-full">
+                                <div class="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-8 flex items-center">
+                        <span class="text-blue-400 mr-2">//</span> Tools & Technologies
+                    </h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-slate-700/50 p-4 rounded-lg border border-slate-600 hover:border-blue-500 transition-colors">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded bg-blue-900/30 flex items-center justify-center">
+                                    <i class="fab fa-html5 text-orange-500"></i>
+                                </div>
+                                <span class="font-medium text-white">HTML5</span>
+                            </div>
+                        </div>
+                        <div class="bg-slate-700/50 p-4 rounded-lg border border-slate-600 hover:border-blue-500 transition-colors">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded bg-blue-900/30 flex items-center justify-center">
+                                    <i class="fab fa-css3-alt text-blue-400"></i>
+                                </div>
+                                <span class="font-medium text-white">CSS3</span>
+                            </div>
+                        </div>
+                        <div class="bg-slate-700/50 p-4 rounded-lg border border-slate-600 hover:border-blue-500 transition-colors">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded bg-blue-900/30 flex items-center justify-center">
+                                    <i class="fab fa-js text-yellow-300"></i>
+                                </div>
+                                <span class="font-medium text-white">JavaScript</span>
+                            </div>
+                        </div>
+                        <div class="bg-slate-700/50 p-4 rounded-lg border border-slate-600 hover:border-blue-500 transition-colors">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded bg-blue-900/30 flex items-center justify-center">
+                                    <i class="fas fa-code text-green-400"></i>
+                                </div>
+                                <span class="font-medium text-white">JSON</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Music Player Section -->
+    <section class="py-12 px-6 bg-slate-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mr-4">
+                    <span class="text-blue-400">.</span><span class="text-emerald-400">music</span><span class="text-blue-400">(</span><span class="text-blue-400">)</span>
+                </h2>
+                <div class="h-px flex-1 bg-gradient-to-r from-blue-600 to-transparent"></div>
+            </div>
+
+            <div class="music-player">
+                <img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" alt="Album Cover" class="music-image">
+                <div class="music-info">
+                    <h3 class="music-title">Coding Flow</h3>
+                    <p class="music-duration">3:45 / 5:30</p>
+                </div>
+                <button class="play-button">
+                    <i class="fas fa-play"></i> Play
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Contact Section -->
+    <section class="min-h-screen pt-32 pb-20 px-6 bg-slate-900" id="social-contact">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center justify-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mr-4">
+                    <span class="text-blue-400">.</span><span class="text-emerald-400">contactMe</span><span class="text-blue-400">(</span><span class="text-blue-400">)</span>
+                </h2>
+                <div class="h-px flex-1 bg-gradient-to-r from-blue-600 to-transparent"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="space-y-8">
+                    <h3 class="text-2xl font-bold text-white flex items-center">
+                        <span class="text-blue-400 mr-2">//</span> Get In Touch
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <a href="https://github.com/lexion" target="_blank" 
+                           class="p-6 bg-slate-800 hover:bg-blue-900/20 rounded-xl border border-slate-700 transition-all flex items-center space-x-4">
+                            <div class="w-14 h-14 rounded-lg bg-blue-900/30 flex items-center justify-center">
+                                <i class="fab fa-github text-blue-400 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white">GitHub</h4>
+                                <p class="text-slate-400">@lexion</p>
+                            </div>
+                        </a>
+                        <a href="https://wa.me/6281234567890" target="_blank" 
+                           class="p-4 bg-green-600 hover:bg-green-700 rounded-lg flex items-center space-x-3 transition-colors">
+                            <div class="w-12 h-12 rounded-full bg-green-700 flex items-center justify-center">
+                                <i class="fab fa-whatsapp text-white text-xl"></i
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-white">WhatsApp</h4>
+                                <p class="text-slate-300 text-sm">+62 812 3456 7890</p>
+                            </div>
+                        </a>
+
+                        <a href="https://github.com/lexion" target="_blank"
+                           class="p-4 bg-slate-800 hover:bg-slate-700 rounded-lg flex items-center space-x-3 transition-colors">
+                            <div class="w-12 h-12 rounded-full bg-slate-700 flex items-center justify-center">
+                                <i class="fab fa-github text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-white">GitHub</h4>
+                                                                <p class="text-slate-300 text-sm">@lexion</p>
+                            </div>
+                        </a>
+
+                        <a href="https://instagram.com/lexion_dev" target="_blank"
+                           class="p-4 bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg flex items-center space-x-3 transition-colors">
+                            <div class="w-12 h-12 rounded-full bg-purple-700 flex items-center justify-center">
+                                <i class="fab fa-instagram text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-white">Instagram</h4>
+                                <p class="text-slate-300 text-sm">@lexion_dev</p>
+                            </div>
+                        </a>
+
+                        <a href="https://t.me/lexion" target="_blank"
+                           class="p-4 bg-blue-600 hover:bg-blue-700 rounded-lg flex items-center space-x-3 transition-colors">
+                            <div class="w-12 h-12 rounded-full bg-blue-700 flex items-center justify-center">
+                                <i class="fab fa-telegram text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-white">Telegram</h4>
+                                <p class="text-slate-300 text-sm">@lexion</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <form class="space-y-6 bg-slate-800/50 p-8 rounded-xl border border-slate-700">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-slate-300 mb-2">Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-slate-500" placeholder="Your name">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-slate-300 mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-slate-500" placeholder="your@email.com">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-slate-300 mb-2">Subject</label>
+                            <input type="text" id="subject" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-slate-500" placeholder="What's this about?">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-slate-300 mb-2">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-slate-500" placeholder="Your message..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-md hover:opacity-90 transition-opacity text-white font-medium">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto text-center">
+            <p class="text-slate-400">
+                &copy; <span id="year"></span> Lexion. All rights reserved. Built with <i class="fas fa-heart text-red-400"></i> and <i class="fas fa-code text-blue-400"></i>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+
+            // Prevent clicks inside menu from closing it
+            mobileMenu.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        }
+
+        // Create floating code elements
+        function createFloatingCode() {
+            const codeSnippets = [
+                "const x = 5;",
+                "function hello() {}",
+                "import React from 'react'",
+                "console.log('Hello')",
+                "<div className='app'></div>",
+                "export default App",
+                "array.map(item => item)"
+            ];
+            
+            const container = document.querySelector('.loading-container');
+            
+            for (let i = 0; i < 15; i++) {
+                const code = document.createElement('div');
+                code.className = 'floating-code';
+                code.textContent = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+                code.style.left = `${Math.random() * 100}%`;
+                code.style.animationDuration = `${10 + Math.random() * 20}s`;
+                code.style.animationDelay = `${Math.random() * 5}s`;
+                container.appendChild(code);
+            }
+        }
+
+        // Typing animation for hero section
+        function initTypingAnimation() {
+            const typingElements = document.querySelectorAll('.typing-line');
+            
+            typingElements.forEach((el, index) => {
+                const text = el.getAttribute('data-text');
+                el.style.width = '0';
+                el.style.animationDelay = `${index * 0.5}s`;
+                
+                setTimeout(() => {
+                    el.textContent = text;
+                }, index * 500);
+            });
+        }
+
+        // Enhanced loading animation
+        window.addEventListener('load', function() {
+            createFloatingCode();
+            initTypingAnimation();
+            const loader = document.querySelector('.loading-container');
+            const typingText = document.querySelector('.typing-text');
+            const progressBar = document.querySelector('.progress-bar');
+            const messages = [
+                "Booting system...",
+                "Loading components...",
+                "Initializing UI...",
+                "Finalizing setup..."
+            ];
+            
+            let messageIndex = 0;
+            let charIndex = 0;
+            let progress = 0;
+            
+            function typeWriter() {
+                if (messageIndex < messages.length) {
+                    if (charIndex < messages[messageIndex].length) {
+                        typingText.textContent += messages[messageIndex].charAt(charIndex);
+                        charIndex++;
+                        setTimeout(typeWriter, Math.random() * 50 + 50);
+                    } else {
+                        messageIndex++;
+                        charIndex = 0;
+                        setTimeout(() => {
+                            typingText.textContent = '';
+                            typeWriter();
+                            updateProgress();
+                        }, 800);
+                    }
+                }
+            }
+            
+            function updateProgress() {
+                progress += 25;
+                progressBar.style.width = progress + '%';
+                
+                if (progress < 100) {
+                    setTimeout(updateProgress, 600);
+                } else {
+                    setTimeout(() => {
+                        loader.style.opacity = '0';
+                        setTimeout(() => {
+                            loader.style.display = 'none';
+                        }, 500);
+                    }, 500);
+                }
+            }
+            
+            typeWriter();
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
