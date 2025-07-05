@@ -62,6 +62,22 @@
             border: 1px solid #334155;
         }
         
+        .social-icon {
+            width: 50px; /* Adjusted size for circular icons */
+            height: 50px; /* Adjusted size for circular icons */
+            border-radius: 50%; /* Ensures the icon is circular */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
         .back-home {
             padding: 12px 24px;
             background: linear-gradient(135deg, #3b82f6, #7c3aed);
