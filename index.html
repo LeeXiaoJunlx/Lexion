@@ -747,10 +747,10 @@
     playButton.addEventListener('click', function() {
         if (isPlaying) {
             musicPlayer.pause();
-            playButton.innerHTML = '<i class="fas fa-play"></i> Play';
+            playButton.innerHTML = '<i class="fas fa-play"></i>';
         } else {
             musicPlayer.play();
-            playButton.innerHTML = '<i class="fas fa-pause"></i> Pause';
+            playButton.innerHTML = '<i class="fas fa-pause"></i>';
         }
         isPlaying = !isPlaying;
     });
