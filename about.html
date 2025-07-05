@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me | Lexion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e293b;
+            --accent: #7c3aed;
+        }
+        
+        body {
+            font-family: 'Fira Code', monospace, sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #3b82f6;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        .code-effect {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 16px;
+            border-radius: 8px;
+            overflow: auto;
+            white-space: pre-wrap; /* Preserve whitespace */
+            font-family: 'Fira Code', monospace;
+            border: 1px solid #334155;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-slate-900/80 backdrop-blur-sm z-50 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-md bg-indigo-600 flex items-center justify-center">
+                    <span class="text-white font-bold">{"</>"}</span>
+                </div>
+                <span class="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Lexion</span>
+            </a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="index.html" class="text-slate-300 hover:text-blue-400 transition-colors flex items-center">
+                    <span class="text-blue-400 mr-2">#</span>home
+                </a>
+                <a href="about.html" class="text-blue-400 font-medium flex items-center">
+                    <span class="text-blue-400 mr-2">#</span>about
+                </a>
+                <a href="index.html#projects" class="text-slate-300 hover:text-blue-400 transition-colors flex items-center">
+                    <span class="text-blue-400 mr-2">#</span>projects
+                </a>
+                <a href="index.html#contact" class="text-slate-300 hover:text-blue-400 transition-colors flex items-center">
+                    <span class="text-blue-400 mr-2">#</span>contact
+                </a>
+            </div>
+            <div class="md:hidden relative">
+                <button id="mobile-menu-button" class="text-slate-300">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <div id="mobile-menu" class="hidden absolute right-0 mt-2 w-48 bg-slate-800 rounded-md shadow-lg z-50 border border-slate-700">
+                    <a href="index.html" class="block px-4 py-2 text-slate-300 hover:bg-slate-700"># home</a>
+                    <a href="about.html" class="block px-4 py-2 text-blue-400 hover:bg-slate-700"># about</a>
+                    <a href="index.html#projects" class="block px-4 py-2 text-slate-300 hover:bg-slate-700"># projects</a>
+                    <a href="index.html#contact" class="block px-4 py-2 text-slate-300 hover:bg-slate-700"># contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="min-h-screen pt-32 pb-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <!-- Profile Image -->
+            <div class="flex justify-center mb-8">
+                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" 
+                     alt="Profile Picture" 
+                     class="profile-image">
+            </div>
+            
+            <!-- About Me -->
+            <h2 class="text-2xl font-bold text-white mb-4 flex items-center justify-center">
+                <span class="text-blue-400 mr-2">//</span> About Me
+            </h2>
+            <div class="code-effect mb-8">
+                Hi, I'm Lexion! I'm a passionate web developer specializing in creating beautiful, functional websites using HTML, CSS, and JavaScript. 
+                With 3 years of experience in the field, I've worked on various projects ranging from personal portfolios to e-commerce websites. 
+                I believe in clean code, responsive design, and creating intuitive user experiences.
+            </div>
+            
+            <!-- Information -->
+            <h2 class="text-2xl font-bold text-white mb-4 flex items-center justify-center">
+                <span class="text-blue-400 mr-2">//</span> Information
+            </h2>
+            <div class="code-effect mb-8 text-left">
+                <p><span class="text-blue-400">Name:</span> Lexion</p>
+                <p><span class="text-blue-400">Age:</span> 25</p>
+                <p><span class="text-blue-400">Location:</span> Jakarta, ID</p>
+                <p><span class="text-blue-400">Email:</span> hello@lexion.dev</p>
+                <p><span class="text-blue-400">Phone:</span> +62 812 3456 7890</p>
+                <p><span class="text-blue-400">Freelance:</span> Available</p>
+            </div>
+            
+            <!-- Let's Connect -->
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center justify-center">
+                <span class="text-blue-400 mr-2">//</span> Let's Connect
+            </h2>
+            <div class="flex justify-center space-x-4">
+                <a href="https://github.com/lexion" target="_blank" class="social-icon bg-slate-700 text-white hover:bg-slate-600">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://wa.me/6281234567890" target="_blank" class="social-icon bg-green-600 text-white hover:bg-green-700">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://instagram.com/lexion_dev" target="_blank" class="social-icon bg-gradient-to-r from-pink-600 to-purple-600 text-white hover:opacity-90">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto text-center">
+            <p class="text-slate-400">
+                &copy; <span id="year"></span> Lexion. All rights reserved. Built with <i class="fas fa-heart text-red-400"></i> and <i class="fas fa-code text-blue-400"></i>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+
+            // Prevent clicks inside menu from closing it
+            mobileMenu.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        }
+    </script>
+</body>
+</html>
