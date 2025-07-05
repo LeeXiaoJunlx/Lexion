@@ -272,6 +272,20 @@
         .play-button:hover {
             background: #2563eb;
         }
+        .music-progress {
+    height: 4px;
+    background: #334155;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.music-progress .progress-bar {
+    height: 100%;
+    background: #3b82f6;
+    transition: width 0.1s linear;
+}
+
     </style>
 </head>
 <body class="antialiased">
@@ -407,14 +421,17 @@
             </div>
 
             <div class="music-player">
-                <img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" alt="Album Cover" class="music-image">
-                <div class="music-info">
-                    <h3 class="music-title">Coding Flow</h3>
-                    <p class="music-duration">3:45 / 5:30</p>
-                </div>
-                <button class="play-button">
-                    <i class="fas fa-play"></i> Play
-                </button>
+    <img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" alt="Album Cover" class="music-image">
+    <div class="music-info">
+        <h3 class="music-title">Coding Flow</h3>
+        <p class="music-duration">0:00 / 0:00</p>
+        <div class="music-progress">
+            <div class="progress-bar" style="width: 0%"></div>
+        </div>
+    </div>
+    <button class="play-button">
+        <i class="fas fa-play"></i> Play
+    </button>
             </div>
         </div>
     </section>
@@ -716,6 +733,44 @@
             typeWriter();
             updateProgress();
         });
+
+        // Music player functionality
+    const playButton = document.querySelector('.play-button');
+    const musicPlayer = document.getElementById('music-player');
+    let isPlaying = false;
+
+    playButton.addEventListener('click', function() {
+        if (isPlaying) {
+            musicPlayer.pause();
+            playButton.innerHTML = '<i class="fas fa-play"></i> Play';
+        } else {
+            musicPlayer.play();
+            playButton.innerHTML = '<i class="fas fa-pause"></i> Pause';
+        }
+        isPlaying = !isPlaying;
+    });
+
+    // Update duration display
+    musicPlayer.addEventListener('timeupdate', function() {
+        const currentTime = formatTime(musicPlayer.currentTime);
+        const duration = formatTime(musicPlayer.duration);
+        document.querySelector('.music-duration').textContent = `${currentTime} / ${duration}`;
+    });
+
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+
+    // Initialize duration display
+    musicPlayer.addEventListener('loadedmetadata', function() {
+        const duration = formatTime(musicPlayer.duration);
+        document.querySelector('.music-duration').textContent = `0:00 / ${duration}`;
+    });
+
     </script>
+    <!-- Add this audio element right before the closing </body> tag -->
+<audio id="music-player" src="https://files.cloudkuimages.guru/audios/YZr43HWT.mp3"></audio>    
 </body>
 </html>
