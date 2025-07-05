@@ -8,7 +8,91 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Same style block from original HTML */
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e293b;
+            --accent: #7c3aed;
+        }
+        
+        body {
+            font-family: 'Fira Code', monospace, sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        
+        .code-bg {
+            background-color: #1e293b;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .tag {
+            color: #7dd3fc;
+        }
+        
+        .tech-tag {
+            background-color: #334155;
+            color: #38bdf8;
+        }
+        
+        .editor-window {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .editor-header {
+            background: #1e293b;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #334155;
+        }
+        
+        .editor-dots {
+            display: flex;
+            gap: 6px;
+        }
+        
+        .editor-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #f59e0b; }
+        .dot-green { background: #10b981; }
+        
+        .editor-title {
+            margin-left: 12px;
+            font-size: 14px;
+            color: #94a3b8;
+        }
+        
+        .code-line {
+            font-family: 'Fira Code', monospace;
+            padding: 2px 16px;
+            display: block;
+        }
+        
+        .line-number {
+            color: #64748b;
+            display: inline-block;
+            width: 24px;
+            text-align: right;
+            margin-right: 16px;
+            user-select: none;
+        }
+        
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
     </style>
 </head>
 <body class="antialiased">
