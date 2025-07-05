@@ -228,6 +228,50 @@
             background: linear-gradient(90deg, #3b82f6, #7c3aed);
             transition: width 0.3s ease;
         }
+.music-player {
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .music-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            margin-right: 16px;
+        }
+
+        .music-info {
+            flex-grow: 1;
+        }
+
+        .music-title {
+            font-size: 1rem;
+            color: #e2e8f0;
+        }
+
+        .music-duration {
+            font-size: 0.875rem;
+            color: #94a3b8;
+        }
+
+        .play-button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .play-button:hover {
+            background: #2563eb;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -353,7 +397,27 @@
             </div>
         </div>
     </section>
+<section class="py-12 px-6 bg-slate-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mr-4">
+                    <span class="text-blue-400">.</span><span class="text-emerald-400">music</span><span class="text-blue-400">(</span><span class="text-blue-400">)</span>
+                </h2>
+                <div class="h-px flex-1 bg-gradient-to-r from-blue-600 to-transparent"></div>
+            </div>
 
+            <div class="music-player">
+                <img src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" alt="Album Cover" class="music-image">
+                <div class="music-info">
+                    <h3 class="music-title">Coding Flow</h3>
+                    <p class="music-duration">3:45 / 5:30</p>
+                </div>
+                <button class="play-button">
+                    <i class="fas fa-play"></i> Play
+                </button>
+            </div>
+        </div>
+    </section>
     <!-- Projects Section -->
     <section id="projects" class="py-20 px-6 bg-slate-900">
         <div class="max-w-7xl mx-auto">
