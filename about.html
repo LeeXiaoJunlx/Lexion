@@ -36,23 +36,9 @@
             white-space: pre-wrap; /* Preserve whitespace */
             font-family: 'Fira Code', monospace;
             border: 1px solid #334155;
-        }
-        
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-        
-        .social-icon:hover {
-            transform: translateY(-3px);
+            margin-bottom: 2rem;
         }
 
-        /* Loader Styles */
         .loading-container {
             position: fixed;
             top: 0;
@@ -61,56 +47,61 @@
             height: 100%;
             background: #0f172a;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 1000;
         }
-
-        .loader {
-            position: relative;
-            width: 80px;
-            height: 80px;
+        
+        .terminal-loader {
+            width: 300px;
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border: 1px solid #334155;
         }
-
-        .loader div {
-            position: absolute;
-            border: 8px solid rgba(255, 255, 255, 0.1);
-            border-top: 8px solid #3b82f6;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+        
+        .back-home {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #3b82f6, #7c3aed);
+            border-radius: 6px;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 2rem;
         }
-
-        .loader div:nth-child(1) {
-            width: 80px;
-            height: 80px;
-            animation-delay: 0s;
+        
+        .back-home:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
         }
-
-        .loader div:nth-child(2) {
-            width: 60px;
-            height: 60px;
-            animation-delay: -0.5s;
-        }
-
-        .loader div:nth-child(3) {
-            width: 40px;
-            height: 40px;
-            animation-delay: -0.25s;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-20px); }
         }
     </style>
 </head>
 <body class="antialiased">
     <!-- Loader -->
     <div class="loading-container" id="loader">
-        <div class="loader">
-            <div></div>
-            <div></div>
-            <div></div>
+        <div class="terminal-loader">
+            <div class="terminal-header">
+                <div class="console-dot" style="background: #ef4444;"></div>
+                <div class="console-dot" style="background: #f59e0b;"></div>
+                <div class="console-dot" style="background: #10b981;"></div>
+                <div class="terminal-title" style="margin-left: 12px; color: #64748b;">loading-about...</div>
+            </div>
+            <div class="terminal-body">
+                <div class="terminal-line">
+                    <span class="text-emerald-400">system</span>:<span class="text-blue-400">~$</span> 
+                    <span class="typing-text"></span>
+                </div>
+                <div style="height: 4px; background: #334155; border-radius: 2px; margin-top: 15px; overflow: hidden;">
+                    <div id="progress-bar" style="height: 100%; width: 0%; background: linear-gradient(90deg, #3b82f6, #7c3aed);"></div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -236,15 +227,58 @@
             });
         }
 
-        // Hide loader after a short delay
+        // Enhanced loading animation
         window.addEventListener('load', function() {
             const loader = document.getElementById('loader');
-            setTimeout(() => {
-                loader.style.opacity = '0';
-                setTimeout(() => {
-                    loader.style.display = 'none';
-                }, 500);
-            }, 500); // Adjust the delay as needed
+            const typingText = document.querySelector('.typing-text');
+            const progressBar = document.getElementById('progress-bar');
+            
+            const messages = [
+                "loading about me...",
+                "fetching information...",
+                "rendering profile...",
+                "almost there..."
+            ];
+            
+            let messageIndex = 0;
+            let charIndex = 0;
+            let progress = 0;
+            
+            function typeWriter() {
+                if (messageIndex < messages.length) {
+                    if (charIndex < messages[messageIndex].length) {
+                        typingText.textContent += messages[messageIndex].charAt(charIndex);
+                        charIndex++;
+                        setTimeout(typeWriter, Math.random() * 30 + 30);
+                    } else {
+                        messageIndex++;
+                        charIndex = 0;
+                        setTimeout(() => {
+                            typingText.textContent = '';
+                            typeWriter();
+                            updateProgress();
+                        }, 300);
+                    }
+                }
+            }
+            
+            function updateProgress() {
+                progress += 25;
+                progressBar.style.width = progress + '%';
+                
+                if (progress < 100) {
+                    setTimeout(updateProgress, 200);
+                } else {
+                    setTimeout(() => {
+                        loader.style.opacity = '0';
+                        setTimeout(() => {
+                            loader.style.display = 'none';
+                        }, 500);
+                    }, 300);
+                }
+            }
+            
+            typeWriter();
         });
     </script>
 </body>
